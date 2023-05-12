@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <?php
+<?php
+    // back to null
     $namalengkap = "";
     $kelas    = '';
+    //message error required
+    $namalengkaperror = "";
+    $kelaserror   = '';
 
     if($_SERVER ["REQUEST_METHOD"]=== "POST" ){
-        $namalengkap = dataType($_POST['namalengkap']);
-        $kelas = dataType($_POST['kelas']);
-    }
+        if(empty($_POST['namalengkap'])){
+            $namalengkaperror = "nama lengkap tidak boleh kosong ,harus diisikan";
+        } else {
+            $namalengkap = dataType($_POST['namalengkap']);
+        } 
+        if(empty($_POST['kelas'])){
+            $kelaserror = "kelas tidak boleh kosong ,harus diisikan";
+    } else {
+        $kelaserror = dataType($_POST['kelaserror']);
+    } 
         function dataType($datakelas)
         {
             $inputData = trim($datakelas);
@@ -22,11 +33,13 @@
             $inputData = htmlspecialchars($datakelas);
             return $inputData;
         }
+    }
     ?>
    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
         <div style="margin-bottom: 3px;">
         <label for="username">namalengkap</label>
         <input type="text" id="username" name="namalengkap" placeholder="Masukan nama anda"/>
+        <span style="color: red; font: size 10px;"></span><?php $namalengkaperror; ?></span>
     </div>
     <div style="margin-bottom: 3px;">
         <label for="username">Kelas</label>

@@ -22,10 +22,11 @@
             $namalengkap = dataType($_POST['namalengkap']);
         } 
         if(empty($_POST['kelas'])){
-            $kelaserror = "kelas tidak boleh kosong ,harus diisikan";
-    } else {
-        $kelaserror = dataType($_POST['kelaserror']);
-    } 
+            $kelaserror= "kelas tidak boleh kosong ,harus diisikan.";
+        } else {
+            $kelas = dataType($_POST['kelas']);
+        } 
+    }
         function dataType($datakelas)
         {
             $inputData = trim($datakelas);
@@ -33,9 +34,9 @@
             $inputData = htmlspecialchars($datakelas);
             return $inputData;
         }
-    }
+    
     ?>
-   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
         <div style="margin-bottom: 3px;">
         <label for="username">namalengkap</label>
         <input type="text" id="username" name="namalengkap" placeholder="Masukan nama anda"/>
@@ -44,6 +45,8 @@
     <div style="margin-bottom: 3px;">
         <label for="username">Kelas</label>
         <input type="number" id="username" name="kelas" placeholder="Masukan kelas anda"/>
+        <span style="color: red; font: size 10px;"></span><?php $kelaserror; ?></span>
+
     </div>
     <input type="submit" value="Simpan">
     </form>

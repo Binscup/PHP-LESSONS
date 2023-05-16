@@ -1,18 +1,22 @@
 <?php
-    class Notification{
-        const webdev= "belajar webdev php";
-    }
-interface Study
-{
-    public function personalStudy();
-}
-class school  implements Study
-{
-    public function personalStudy()
+    class Notication
     {
-        echo Notification::webDev;
+        const webDev = "Belajar Web Development PHP.";
     }
-}
-$school= new school();
-$school->personalStudy();
- ?>
+
+    interface study
+    {
+        public function personalStudy();
+    }
+
+    class school implements study
+    {
+        public function personalStudy()
+        {
+            echo Notication::webDev;
+        }
+    }
+
+    $school = new school();
+    $school->personalStudy();
+?>
